@@ -1,0 +1,258 @@
+:root {
+  /* predefined colors: */
+  --page-bg: #f5f1e8;
+  --content-bg: #fffdf8;
+
+  --main-text: #20252b;
+  --secondary-text: #687078;
+
+  --accent-color: #3f4f7a;
+  --accent-bg: #e3e7f2;
+  --accent-red: #b85c5c;
+
+  --divider-color: #d8d3c8;
+  /* .................. */
+}
+
+body {
+  background-color: var(--page-bg);
+  width: calc(100% - 40px);
+  margin: 20px auto;
+  max-width: 1200px;
+
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--main-text);
+
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Creating to grids, with the sidebar having a fixed size */
+  gap: 20px;
+  align-items: start;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+aside {
+  /* not visible at mobile view */
+  background: var(--content-bg);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#profile > img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: solid 4px var(--accent-red);
+}
+
+#profile > p:nth-of-type(1),
+#profile > p:nth-of-type(2) {
+  background: var(--accent-bg);
+  border: solid 1px var(--content-bg); /* visible at mobile view */
+  border-radius: 8px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-weight: lighter;
+  margin: 8px 0px;
+}
+
+.info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+  margin: 30px 0px;
+  font-weight: lighter;
+}
+
+.info-container > img {
+  width: 20px;
+  border: solid 1px var(--accent-red);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: -4px 2px 8px var(--accent-red);
+}
+
+.info-container .label {
+  color: var(--secondary-text);
+  font-size: smaller;
+  margin: 0;
+}
+
+.info-container p {
+  margin: 0;
+}
+
+#social-media img {
+  height: 2rem;
+  padding: 0px 4px;
+}
+
+main {
+  background: var(--content-bg);
+  border-radius: 20px;
+
+  display: grid;
+  grid-template: "stack";
+}
+
+nav {
+  background: var(--accent-bg);
+  border-radius: 1px 20px;
+  border: solid 1px var(--divider-color);
+  color: var(--secondary-text);
+  font-weight: bold;
+
+  grid-area: stack;
+  justify-self: end;
+  align-self: start;
+  z-index: 1;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin: 0px 24px;
+}
+
+nav li {
+  padding: 10px 16px;
+}
+
+nav a.active {
+  color: var(--accent-red);
+}
+
+/* Tablet design --> exploting the cascade-algorithm */
+@media (max-width: 900px) {
+  body {
+    grid-template-columns: 260px 1fr; /* Shrinking the sidebars fixed size */
+    margin: 20px 10px; /* less margin at the sides */
+    width: calc(100% - 20px); /* adjusting width to the reduced size */
+  }
+
+  main {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    justify-content: space-around;
+  }
+
+  aside {
+    padding: 10px; /* Making the same room for the content, while shrinking the column */
+  }
+}
+
+/* Mobile design */
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 1fr; /* Only one column now */
+    grid-template-areas: /* splitting the "aside" in a header and a footer and rearranging the structure */
+      "nav"
+      "profile"
+      "main"
+      "contact";
+  }
+
+  aside {
+    display: contents; /* splitting the aside content */
+  }
+
+  nav {
+    grid-row: nav;
+  }
+
+  #profile {
+    grid-area: profile;
+  }
+
+  main {
+    grid-area: main;
+  }
+
+  #contact-info {
+    grid-area: contact;
+  }
+
+  .info-container a {
+    display: block;
+  }
+}
+
+section {
+  grid-area: stack;
+  margin: 24px;
+}
+
+section h1::after {
+  /* Creating red line under page title */
+  content: "";
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: var(--accent-red);
+  margin-top: 8px;
+  border-radius: 2px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  margin: 40px 0px 0px;
+}
+
+section a {
+  color: var(--accent-color);
+}
+
+.timeline {
+  /* Create timeline on the left */
+  border-left: 2px solid var(--divider-color);
+  list-style: none;
+}
+
+.timeline li::before {
+  /* Create the dots on the timeline */
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  left: -49px;
+  top: 5px;
+  border: solid 3px var(--divider-color);
+}
+
+.timeline li {
+  /* ensure dots are one the timeline */
+  position: relative;
+}
+
+.timeline li > * {
+  /* create space between timeline and text */
+  margin-left: 30px;
+}
+
+.date {
+  color: var(--accent-red);
+}
