@@ -203,7 +203,7 @@ section:first-of-type {
 }
 
 section:last-of-type {
-  margin-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 section {
@@ -273,13 +273,14 @@ section a {
 
 /* Skills at about-me page */
 
-.skill-list {
+.skills {
   margin-left: 8px;
   border: solid 1px var(--accent-red);
   border-radius: 16px;
   padding: 16px;
   box-shadow: -4px 2px 8px var(--accent-red);
-  margin: 20px;
+  margin: 50px 10px;
+  color: var(--accent-color);
 }
 
 .skills ul {
@@ -292,8 +293,7 @@ section a {
 }
 
 .skills li {
-  min-width: 150px;
-  max-width: 220px;
+  flex: 1 1 220px;
   padding: 10px;
 }
 
