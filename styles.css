@@ -12,6 +12,8 @@
 
   --divider-color: #d8d3c8;
   /* .................. */
+
+  scrollbar-gutter: stable;
 }
 
 body {
